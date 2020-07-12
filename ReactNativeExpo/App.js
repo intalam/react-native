@@ -16,6 +16,7 @@ import HomeScreen from './components/Home';
 import Camera from './components/Camera';
 
 import Doctors from './components/doctors';
+import DoctorRenderProp from './components/DoctorRenderProp';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Fad" component={Doctors} />
         <Stack.Screen name="Camera" component={Camera} />
+        <Stack.Screen name="FAD RenderProp" component={DoctorRenderProp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

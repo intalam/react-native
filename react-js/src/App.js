@@ -1,24 +1,62 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import DoctorComponent from './shared/DoctorComponent';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DoctorComponent render={({ docs, filteredDocs, searchBy, filterBy, isLoading, num, onChangeText, getDoctorsOnType, getPhotoUrl }) => {
+        return (
+          <div>
+            <div className="head">Doctors {!isLoading && ('( ' + num + ' match Found )')}</div>
+            <div>
+              <input
+                className="input"
+                onChange={e => getDoctorsOnType(e.value)}
+                value={searchBy}
+                placeholder={'Type to get docs from SOLR'}
+              />
+            </div>
+
+            <div>
+              <input
+                className="input"
+                onChange={e => onChangeText(e.value)}
+                value={searchBy}
+                placeholder={'Type to get docs from SOLR'}
+              />
+            </div>
+
+            {
+              isLoading && <div><h1>Loading...</h1></div>
+            }
+            {
+              !isLoading && filteredDocs && !filteredDocs.length && <>
+                <div><div style={{ fontSize: 20, color: '#00539b' }}>No Match Found</div></div>
+              </>
+            }
+
+            {
+              !isLoading && filteredDocs && filteredDocs.map((d) => {
+                return (
+                  <div>
+                    <img src={getPhotoUrl(d)} />
+                    <div>{d.tm_X3b_en_title[0]}</div>
+
+                    <div style={{ textAlign: 'center' }}>{d.specialties_specific}</div>
+
+                    <div style={{ textAlign: 'center' }}><div style={{ fontWeight: 'bold' }}>Duke</div> Health Provider</div>
+
+                  </div>
+                )
+              })
+            }
+
+          </div>
+        )
+      }} />
+
     </div>
   );
 }

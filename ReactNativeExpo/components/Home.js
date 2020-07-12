@@ -12,6 +12,10 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.item} onPress={() => navigation.navigate('Camera')}>Camera</Text>
       </View>
 
+      <View style={styles.itemContainer}>
+        <Text style={styles.item} onPress={() => navigation.navigate('FAD RenderProp')}>FAD RenderProp</Text>
+      </View>
+
     </View>
   );
 }

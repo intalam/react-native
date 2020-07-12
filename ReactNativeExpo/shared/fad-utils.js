@@ -19,11 +19,13 @@ const getPhotoUrl = (d) => {
 };
 
 const filterByText = (doc, text) => {
+  let filteredDoc = [];
   doc.forEach((d) => {
     if (d.tm_X3b_en_title[0].toLowerCase().indexOf(text && text.toLowerCase()) > -1) {
       filteredDoc.push(JSON.parse(JSON.stringify(d)));
     }
   });
+  return filteredDoc;
 };
 
 export {
