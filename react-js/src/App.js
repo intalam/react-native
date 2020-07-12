@@ -10,10 +10,11 @@ function App() {
         return (
           <div>
             <div className="head">Doctors {!isLoading && ('( ' + num + ' match Found )')}</div>
+            <h2>Doctors filtered by: {searchBy}</h2>
             <div>
               <input
                 className="input"
-                onChange={e => getDoctorsOnType(e.value)}
+                onChange={e => getDoctorsOnType(e.target.value)}
                 value={searchBy}
                 placeholder={'Type to get docs from SOLR'}
               />
@@ -22,8 +23,8 @@ function App() {
             <div>
               <input
                 className="input"
-                onChange={e => onChangeText(e.value)}
-                value={searchBy}
+                onChange={e => onChangeText(e.target.value)}
+                value={filterBy}
                 placeholder={'Type to get docs from SOLR'}
               />
             </div>
