@@ -28,6 +28,7 @@ const filterByText = (doc, text) => {
   return filteredDoc;
 };
 
+
 export {
   getDoctorsSolr,
   getPhotoUrl,
