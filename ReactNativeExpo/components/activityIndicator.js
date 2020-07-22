@@ -6,11 +6,11 @@ export default function IndicatorActivity() {
     <View>
       <View style={[styles.container, styles.horizontal]}>
         <ActivityIndicator size="large" color="#00539b" />
+        {/* <ActivityIndicator size="small" color="#00539b" />
         <ActivityIndicator size="small" color="#00539b" />
-        <ActivityIndicator size="small" color="#00539b" />
-        <ActivityIndicator size="large" color="#00539b" />
+        <ActivityIndicator size="large" color="#00539b" /> */}
       </View>
-      <View>
+      <View style={styles.container}>
         <Text style={styles.loadingText}>Loading Doctors...</Text>
       </View>
     </View>
@@ -20,7 +20,8 @@ export default function IndicatorActivity() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
+    alignSelf: 'center',
   },
   horizontal: {
     flexDirection: "row",
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   loadingText: {
-    fontSize: 20
+    flex: 1,
+    fontSize: 30
   },
 });

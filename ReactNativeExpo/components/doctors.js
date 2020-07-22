@@ -13,11 +13,11 @@ import { Input } from 'react-native-elements';
 import doctorsArray from './doctors-json';
 import IndicatorActivity from './activityIndicator';
 
-import {getDoctorsSolr, getPhotoUrl, filterByText} from '../shared/fad-utils';
+import { getDoctorsSolr, getPhotoUrl, filterByText } from '../shared/fad-utils';
 
 import Axios from 'axios';
 var timeout = null;
-const Doctors = (props) => {
+const Doctors = ({ navigation, ...props }) => {
 
 	const [docs, setDocs] = useState(doctorsArray);
 	const [filteredDocs, setFilteredDocs] = useState(doctorsArray);
@@ -56,7 +56,7 @@ const Doctors = (props) => {
 		<SafeAreaView style={styles.parentContainer}>
 			<ScrollView style={styles.scrollView}>
 				<View style={styles.headerContainer}>
-					<Text style={styles.head}>Doctors { !isLoading && ( '( ' + num + ' match Found )')}</Text>
+					<Text style={styles.head}>Doctors {!isLoading && ('( ' + num + ' match Found )')}</Text>
 
 					<Input
 						style={styles.input}
@@ -78,7 +78,7 @@ const Doctors = (props) => {
 				}
 				{
 					!isLoading && !filteredDocs.length && <>
-						<View><Text style={{fontSize: 20, color: '#00539b'}}>No Match Found</Text></View>
+						<View><Text style={{ fontSize: 20, color: '#00539b' }}>No Match Found</Text></View>
 					</>
 				}
 				{
@@ -94,22 +94,27 @@ const Doctors = (props) => {
 									flexDirection: 'row',
 									flexWrap: 'wrap',
 								}}>
-									<Image source={{ uri: getPhotoUrl(d) }}
-										resizeMode={'cover'}
-										style={{
-											alignSelf: 'center',
-											height: 200,
-											width: 150,
-											borderWidth: 1,
-										}}
-									/>
+									<TouchableHighlight
+										onPress={() => navigation.navigate('Doctor Profile', { doctor: d })}
+									>
+										<Image source={{ uri: getPhotoUrl(d) }}
+											resizeMode={'cover'}
+											style={{
+												alignSelf: 'center',
+												height: 200,
+												width: 150,
+												borderWidth: 1,
+											}}
+										/>
+									</TouchableHighlight>
 								</View>
 
 								<Text
 									style={
 										{ color: '#00539b', textAlign: 'center' }
 									}
-									onPress={() => Linking.openURL('https://dukehealth.org' + d.sm_url[0])}
+									/* onPress={() => Linking.openURL('https://dukehealth.org' + d.sm_url[0])} */
+									onPress={() => navigation.navigate('Doctor Profile', { doctor: d })}
 								>
 									{d.tm_X3b_en_title[0]}
 								</Text>
@@ -121,9 +126,9 @@ const Doctors = (props) => {
 								<TouchableHighlight
 									style={styles.submit}
 									underlayColor='#fff'
-									onPress={() => Linking.openURL('https://dukehealth.org' + d.sm_url[0])}
+									onPress={() => navigation.navigate('Doctor Profile', { doctor: d })}
 								>
-									<Text style={styles.submitText}>View Profile</Text>
+									<Text style={styles.submitText}>View Profile Production</Text>
 								</TouchableHighlight>
 
 							</View>
