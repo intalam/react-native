@@ -37,6 +37,18 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.item} onPress={() => navigation.navigate('WebViewUI')}>Open WebView</Text>
         </View>
       </View> */}
+
+      <View style={styles.container}>
+        <View style={styles.itemContainer}>
+          <Text style={styles.item} onPress={() => navigation.navigate('GeoLocation')}>Show My GeoLocation</Text>
+        </View>
+      </View>
+
+      <View style={styles.container}>
+        <View style={styles.itemContainer}>
+          <Text style={styles.item} onPress={() => navigation.navigate('Camera')}>Camera</Text>
+        </View>
+      </View>
     </>
   );
 }

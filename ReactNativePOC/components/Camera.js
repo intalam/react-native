@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import * as MediaLibrary from 'expo-media-library';
+import * as Permissions from 'expo-permissions';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -11,8 +13,17 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
+      const statusRoll = await Permissions.getAsync(Permissions.CAMERA_ROLL);
       setHasPermission(status === 'granted');
+      if (statusRoll.status !== 'granted') {
+        const newPermission = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+        if (newPermission.status === 'granted') {
+          //its granted.
+        }
+      }
+
     })();
+
   }, []);
 
   if (hasPermission === null) {
@@ -26,7 +37,13 @@ export default function App() {
     try {
       cameraRef.current.takePictureAsync({
         skipProcessing: true,
-        onPictureSaved: () => {console.log('image saved');}
+        onPictureSaved: (photo) => {
+          (async () => {
+            console.log('image saved', photo);
+            const asset = await MediaLibrary.createAssetAsync(photo.uri);
+            console.log('assets -- ', asset);
+          })();
+        }
       })
         .then(data => {
           console.log('image captured data', data);

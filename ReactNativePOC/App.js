@@ -21,6 +21,7 @@ import Doctors from './components/doctors';
 import DoctorRenderProp from './components/DoctorRenderProp';
 import DoctorProfile from './components/DoctorProfile';
 import WebViewUI from './components/WebViewUI';
+import GeoLocation from './components/GeoLocation';
 
 let store = createStore(reducer);
 
@@ -45,6 +46,7 @@ export default function App() {
               title: "WebViewUI",
             }}
           />
+          <Stack.Screen name="GeoLocation" component={GeoLocation} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
