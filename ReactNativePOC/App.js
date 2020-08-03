@@ -20,6 +20,7 @@ import Camera from './components/Camera';
 import Doctors from './components/doctors';
 import DoctorRenderProp from './components/DoctorRenderProp';
 import DoctorProfile from './components/DoctorProfile';
+import WebViewUI from './components/WebViewUI';
 
 let store = createStore(reducer);
 
@@ -36,8 +37,14 @@ export default function App() {
           <Stack.Screen name="Camera" component={Camera} />
           <Stack.Screen name="FAD RenderProp" component={DoctorRenderProp} />
           <Stack.Screen name="Doctor Profile" component={DoctorProfile} />
-          {/* <Stack.Screen name="Notification" component={Notify} /> */}
-          {/* <Stack.Screen name="FAD - WebView" component={FadWebView}/> */}
+          <Stack.Screen
+            name="WebViewUI"
+            component={WebViewUI}
+            options={{
+              headerTintColor: "green",
+              title: "WebViewUI",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

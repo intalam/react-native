@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, Image, Button, StyleSheet, Linking } from 'react-native';
+import { View, Text, Image, Button, StyleSheet, Linking, TouchableHighlight } from 'react-native';
 
 import NotifyDoctorAppointment from './NotifyDoctorAppointment';
 
@@ -21,23 +21,28 @@ const DoctorProfile = ({ route, navigation, ...props }) => {
         flexDirection: 'row',
         flexWrap: 'wrap',
       }}>
-        <Image source={{ uri: getPhotoUrl(d) }}
-          resizeMode={'cover'}
-          style={{
-            alignSelf: 'center',
-            height: 200,
-            width: 150,
-            borderWidth: 1,
-          }}
-          onPress={() => navigation.navigate('Doctor Profile')}
-        />
+        <TouchableHighlight
+          /* onPress={() => navigation.navigate('Doctor Profile')} */
+          onPress={() => navigation.navigate('WebViewUI', { url: 'https://dukehealth.org' + d.sm_url[0] })}
+        >
+          <Image source={{ uri: getPhotoUrl(d) }}
+            resizeMode={'cover'}
+            style={{
+              alignSelf: 'center',
+              height: 200,
+              width: 150,
+              borderWidth: 1,
+            }}
+          />
+        </TouchableHighlight>
       </View>
 
       <Text
         style={
           { color: '#00539b', textAlign: 'center', fontSize: 25, }
         }
-        onPress={() => Linking.openURL('https://dukehealth.org' + d.sm_url[0])}
+        /* onPress={() => Linking.openURL('https://dukehealth.org' + d.sm_url[0])} */
+        onPress={() => navigation.navigate('WebViewUI', { url: 'https://dukehealth.org' + d.sm_url[0], title: d.tm_X3b_en_title[0] })}
       >
         {d.tm_X3b_en_title[0]}
       </Text>
@@ -54,7 +59,7 @@ const DoctorProfile = ({ route, navigation, ...props }) => {
         Total Rating  {d.its_field_total_responses}
       </Text>
 
-      <NotifyDoctorAppointment d={d}/>
+      <NotifyDoctorAppointment d={d} />
 
     </View>
   )

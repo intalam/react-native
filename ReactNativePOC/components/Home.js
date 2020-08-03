@@ -31,6 +31,12 @@ export default function HomeScreen({ navigation }) {
         </View> */}
         {/* <FadWebView/> */}
       </View>
+
+      {/* <View style={styles.container}>
+        <View style={styles.itemContainer}>
+          <Text style={styles.item} onPress={() => navigation.navigate('WebViewUI')}>Open WebView</Text>
+        </View>
+      </View> */}
     </>
   );
 }
