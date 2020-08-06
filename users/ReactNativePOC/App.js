@@ -33,15 +33,57 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="User List" component={Users} />
-          <Stack.Screen name="Contacts" component={Contacts} />
-          <Stack.Screen name="Camera" component={Camera} />
-          <Stack.Screen name="User RenderProp" component={UserRenderProp} />
-          <Stack.Screen name="User Profile" component={UserProfile} />
+          <Stack.Screen name="Home" component={HomeScreen} options={{
+            headerStyle: {
+              backgroundColor: '#00539b',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center'
+          }}/>
+          <Stack.Screen name="User List" component={Users} options={{
+            headerStyle: {
+              backgroundColor: '#00539b',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center'
+          }}/>
+          <Stack.Screen name="Contacts" component={Contacts} options={{
+            headerStyle: {
+              backgroundColor: '#00539b',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center'
+          }}/>
+          <Stack.Screen name="Camera" component={Camera} options={{
+            headerStyle: {
+              backgroundColor: '#00539b',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center'
+          }}/>
+          <Stack.Screen name="User RenderProp" component={UserRenderProp} options={{
+            headerStyle: {
+              backgroundColor: '#00539b',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center'
+          }}/>
+          <Stack.Screen name="User Profile" component={UserProfile} options={{
+            headerStyle: {
+              backgroundColor: '#00539b',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center'
+          }}/>
           {/* <Stack.Screen name="Notification" component={Notify} /> */}
           {/* <Stack.Screen name="FAD - WebView" component={FadWebView}/> */}
-          <Stack.Screen name="GeoLocation" component={GeoLocation} />
+          <Stack.Screen name="GeoLocation" component={GeoLocation} options={{
+            headerStyle: {
+              backgroundColor: '#00539b',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center'
+          }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

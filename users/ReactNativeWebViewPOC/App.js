@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 export default function App() {
   return (
     <>
-      <WebView source={{ uri: 'https://www.deloitte.com' }} style={{ marginTop: 30 }} />
+      <WebView source={{ uri: 'https://www2.deloitte.com/in/en.html' }} style={{ marginTop: 30 }} />
     </>
   );
 }

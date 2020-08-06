@@ -14,7 +14,7 @@ import IndicatorActivity from './activityIndicator';
 
 import UserComponent from '../shared/UserComponent';
 
-const Users = (props) => {
+const Users = ({ navigation, ...props }) => {
 
   return (
     <UserComponent render={({ users, filteredUsers, searchBy, filterBy, isLoading, num, onChangeText, getUsersOnType, getPhotoUrl }) => {
@@ -53,49 +53,43 @@ const Users = (props) => {
                 return (
                   <View key={u.id} style={styles.container}>
 
-                    <View style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginBottom: 15,
-                      flexDirection: 'row',
-                      flexWrap: 'wrap',
-                    }}>
+                    <View style={{flex: 1}}>
                       <TouchableHighlight
-												onPress={() => navigation.navigate('User Profile', { user: u })}
-											>
-												<Image source={{ uri: getPhotoUrl(u) }}
-													resizeMode={'cover'}
-													style={{
-														alignSelf: 'center',
-														height: 200,
-														width: 150,
-														borderWidth: 1,
-													}}
-												/>
-											</TouchableHighlight>
+                        onPress={() => navigation.navigate('User Profile', { user: u })}
+                      >
+                        <Image source={{ uri: getPhotoUrl(u) }}
+                          resizeMode={'cover'}
+                          style={{
+                            alignSelf: 'center',
+                            height: 120,
+                            width: 100,
+                            borderWidth: 1,
+                          }}
+                        />
+                      </TouchableHighlight>
                     </View>
 
-                    <Text
-                      style={
-                        { color: '#00539b', textAlign: 'center' }
-                      }
-                      onPress={() => navigation.navigate('User Profile', { user: u })}
-                    >
-                      {u.firstName} {u.lastName}
-                    </Text>
+                    <View style={{flex: 2, justifyContent: 'space-between'}}>
 
-                    <Text style={{ textAlign: 'center' }}>{u.jobTitle}</Text>
+                      <Text
+                        style={
+                          { color: '#00539b', textAlign: 'left' }
+                        }
+                        onPress={() => navigation.navigate('User Profile', { user: u })}
+                      >
+                        {u.firstName} {u.lastName}
+                      </Text>
 
-                    {/*<Text style={{ textAlign: 'center' }}><Text style={{ fontWeight: 'bold' }}>Duke</Text> Health Provider</Text>
+                      <Text style={{ textAlign: 'left', marginTop: 10 }}>{u.jobTitle}</Text>
 
-                    <TouchableHighlight
-                      style={styles.submit}
-                      underlayColor='#fff'
-                      onPress={() => Linking.openURL('https://dukehealth.org' + d.sm_url[0])}
-                    >
-                      <Text style={styles.submitText}>View Profile</Text>
-                    </TouchableHighlight>*/}
+                      <TouchableHighlight
+                        style={styles.submit}
+                        underlayColor='#fff'
+                        onPress={() => navigation.navigate('User Profile', { user: u })}
+                      >
+                        <Text style={styles.submitText}>View Profile</Text>
+                      </TouchableHighlight>
+                      </View>	
 
                   </View>
                 );
@@ -110,61 +104,63 @@ const Users = (props) => {
 };
 
 const styles = StyleSheet.create({
-  parentContainer: {
-    display: 'flex',
-    textAlign: 'center',
-    marginTop: 30
-  },
-  scrollView: {
-    paddingTop: 10,
-    marginLeft: 10, marginRight: 10,
-    paddingBottom: 30,
-  },
-  headerContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    marginBottom: 15,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  container: {
-    display: 'flex',
-    textAlign: 'center',
-    marginTop: 30
-  },
-  head: {
-    fontSize: 24,
-    textAlign: 'center',
-    backgroundColor: '#00539b',
-    color: 'white',
-    marginBottom: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
-    width: '100%',
-  },
-  submit: {
-    marginRight: 40,
-    marginLeft: 40,
-    marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    backgroundColor: 'transparent',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#00539b'
-  },
-  submitText: {
-    color: '#00539b',
-    textAlign: 'center',
-  },
-  input: {
-    height: 40, borderColor: 'gray', borderWidth: 1,
-    paddingLeft: 6, paddingRight: 20,
+	parentContainer: {
+		display: 'flex',
+		textAlign: 'center'
+	},
+	scrollView: {
+		paddingTop: 10,
+		marginLeft: 10, marginRight: 10,
+		paddingBottom: 30,
+	},
+	headerContainer: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'flex-start',
+		marginBottom: 25,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+	},
+	container: {
+		/*display: 'flex',
+		textAlign: 'center',
+		marginTop: 30*/
+		flex: 1,
+		flexDirection: 'row',
+		marginBottom: 30
+	},
+	head: {
+		fontSize: 22,
+		textAlign: 'center',
+		borderBottomColor: '#00539b',
+		borderBottomWidth: 1,
+		color: '#00539b',
+		marginBottom: 20,
+		paddingTop: 10,
+		paddingBottom: 10,
+		width: '100%',
+	},
+	submit: {
+		marginTop: 15,
+		paddingTop: 8,
+		paddingBottom: 8,
+		backgroundColor: 'transparent',
+		borderRadius: 4,
+		borderWidth: 1,
+		borderColor: '#00539b',
+		width: '80%'
+	},
+	submitText: {
+		color: '#00539b',
+		textAlign: 'center',
+	},
+	input: {
+		height: 40, borderColor: 'gray', borderWidth: 1,
+		paddingLeft: 6, paddingRight: 20,
 		/* marginLeft: 20, marginRight: 20,  */marginTop: 15, marginBottom: 15,
-    fontSize: 16,
-    height: 40,
-  }
+		fontSize: 16,
+		height: 40,
+	}
 });
 
 export default Users;

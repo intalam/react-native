@@ -87,14 +87,7 @@ const Users = ({ navigation, ...props }) => {
 						return (
 							<View key={u.id} style={styles.container}>
 
-								<View style={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									marginBottom: 15,
-									flexDirection: 'row',
-									flexWrap: 'wrap',
-								}}>
+								<View style={{flex: 1}}>
 									<TouchableHighlight
 										onPress={() => navigation.navigate('User Profile', { user: u })}
 									>
@@ -102,35 +95,35 @@ const Users = ({ navigation, ...props }) => {
 											resizeMode={'cover'}
 											style={{
 												alignSelf: 'center',
-												height: 200,
-												width: 150,
+												height: 120,
+												width: 100,
 												borderWidth: 1,
 											}}
 										/>
 									</TouchableHighlight>
 								</View>
 
-								<Text
-									style={
-										{ color: '#00539b', textAlign: 'center' }
-									}
-									/* onPress={() => Linking.openURL('https://dukehealth.org' + d.sm_url[0])} */
-									onPress={() => navigation.navigate('User Profile', { user: u })}
-								>
-									{u.firstName} {u.lastName}
-								</Text>
+								<View style={{flex: 2, justifyContent: 'space-between'}}>
 
-								<Text style={{ textAlign: 'center' }}>{u.jobTitle}</Text>
+									<Text
+										style={
+											{ color: '#00539b', textAlign: 'left' }
+										}
+										onPress={() => navigation.navigate('User Profile', { user: u })}
+									>
+										{u.firstName} {u.lastName}
+									</Text>
 
-								{/*<Text style={{ textAlign: 'center' }}><Text style={{ fontWeight: 'bold' }}>Duke</Text> Health Provider</Text>*/}
+									<Text style={{ textAlign: 'left', marginTop: 10 }}>{u.jobTitle}</Text>
 
-								{/*<TouchableHighlight
-									style={styles.submit}
-									underlayColor='#fff'
-									onPress={() => navigation.navigate('User Profile', { user: u })}
-								>
-									<Text style={styles.submitText}>View Profile Production</Text>
-								</TouchableHighlight> */}
+									<TouchableHighlight
+										style={styles.submit}
+										underlayColor='#fff'
+										onPress={() => navigation.navigate('User Profile', { user: u })}
+									>
+										<Text style={styles.submitText}>View Profile</Text>
+									</TouchableHighlight>
+									</View>	
 
 							</View>
 						);
@@ -144,8 +137,7 @@ const Users = ({ navigation, ...props }) => {
 const styles = StyleSheet.create({
 	parentContainer: {
 		display: 'flex',
-		textAlign: 'center',
-		marginTop: 30
+		textAlign: 'center'
 	},
 	scrollView: {
 		paddingTop: 10,
@@ -156,35 +148,38 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
-		marginBottom: 15,
+		marginBottom: 25,
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 	},
 	container: {
-		display: 'flex',
+		/*display: 'flex',
 		textAlign: 'center',
-		marginTop: 30
+		marginTop: 30*/
+		flex: 1,
+		flexDirection: 'row',
+		marginBottom: 30
 	},
 	head: {
-		fontSize: 24,
+		fontSize: 22,
 		textAlign: 'center',
-		backgroundColor: '#00539b',
-		color: 'white',
+		borderBottomColor: '#00539b',
+		borderBottomWidth: 1,
+		color: '#00539b',
 		marginBottom: 20,
 		paddingTop: 10,
 		paddingBottom: 10,
 		width: '100%',
 	},
 	submit: {
-		marginRight: 40,
-		marginLeft: 40,
-		marginTop: 10,
-		paddingTop: 20,
-		paddingBottom: 20,
+		marginTop: 15,
+		paddingTop: 8,
+		paddingBottom: 8,
 		backgroundColor: 'transparent',
-		borderRadius: 10,
+		borderRadius: 4,
 		borderWidth: 1,
-		borderColor: '#00539b'
+		borderColor: '#00539b',
+		width: '80%'
 	},
 	submitText: {
 		color: '#00539b',
